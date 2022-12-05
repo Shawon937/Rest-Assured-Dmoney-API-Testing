@@ -4,3 +4,4 @@ src/main
 .idea
 build
 gradle
+allure-results
