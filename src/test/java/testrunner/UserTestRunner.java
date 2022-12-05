@@ -3,40 +3,46 @@ package testrunner;
 import Setup.Setup;
 import com.github.javafaker.Faker;
 import controller.User;
+import io.qameta.allure.Allure;
 import org.apache.commons.configuration.ConfigurationException;
 import org.junit.Assert;
-import org.junit.Test;
+
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
 import utils.Utils;
 
 import java.io.IOException;
 
 public class UserTestRunner {
-//    @Test
-//    public void _1_doLoginWithInvalid() throws ConfigurationException, IOException {
-//        User user = new User();
-//        user.callingLoginAPI("salman@grr.la", "123");
-//        String messageExpected = "Password incorrect";
-//        Assert.assertEquals(user.getMessage(), messageExpected);
-//    }
+    @Test(priority = 1, description = "login with invalid creds")
+    public void doLoginWithInvalid() throws ConfigurationException, IOException {
+        User user = new User();
+        user.callingLoginAPI("salman@grr.la", "123");
+        String messageExpected = "Password incorrect";
+        Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("login with invalid creds");
+    }
 
-    @Test
-    public void _2_doLogin() throws ConfigurationException, IOException {
+    @Test(priority = 2, description = "login with valid creds")
+    public void doLogin() throws ConfigurationException, IOException {
         User user = new User();
         user.callingLoginAPI("salman@grr.la", "1234");
         String messageExpected = "Login successfully";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("login with valid creds");
     }
 
-//    @Test
-//    public void _3_getUserList() throws IOException {
-//        User user = new User();
-//        String id = user.callingUserListAPI();
-//        System.out.println(id);
-//        Assert.assertEquals(id, String.valueOf(81));
-//    }
+    @Test(priority = 3, description = "Get User List")
+    public void getUserList() throws IOException {
+        User user = new User();
+        String id = user.callingUserListAPI();
+        System.out.println(id);
+        Assert.assertEquals(id, String.valueOf(81));
+        Allure.description("Get User List");
+    }
 
-    @Test
-    public void _3_createCustomer() throws IOException, ConfigurationException {
+    @Test(priority = 4 , description = "Create Customer")
+    public void createCustomer() throws IOException, ConfigurationException {
         User user = new User();
         Faker faker = new Faker();
         String name = faker.name().fullName();
@@ -50,12 +56,14 @@ public class UserTestRunner {
 
         String messageExpected = "User created successfully";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Create Customer");
+
 
 
     }
 
-    @Test
-    public void _5_createAgent() throws IOException, ConfigurationException {
+    @Test(priority = 5, description = "Create Agent")
+    public void createAgent() throws IOException, ConfigurationException {
         User user = new User();
         Faker faker = new Faker();
         String name = faker.name().fullName();
@@ -69,84 +77,93 @@ public class UserTestRunner {
 
         String messageExpected = "User created successfully";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Create Agent");
 
     }
 
-    @Test
-    public void _6_customerLogin() throws IOException, ConfigurationException {
+    @Test(priority = 6 , description = "login with Customer Id")
+    public void customerLogin() throws IOException, ConfigurationException {
 
         User user = new User();
         user.callingCustomerLoginAPI();
 
         String messageExpected = "Login successfully";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("login with Customer Id");
     }
 
-    @Test
-    public void _7_updateCustomerData() throws IOException, ConfigurationException {
+    @Test(priority = 7 , description = "Update Customer Data")
+    public void updateCustomerData() throws IOException, ConfigurationException {
 
         User user = new User();
         String phone_number = "0181" + Utils.generateRandomNumber(1000000, 9999999);
         user.callingUpdateCustomerDataAPI(phone_number);
         String messageExpected = "User updated successfully";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Update Customer Data");
     }
 
-    @Test
-    public void _8_depositToAgent() throws IOException, ConfigurationException {
+    @Test(priority = 8, description = "Deposit to Agent")
+    public void depositToAgent() throws IOException, ConfigurationException {
 
         User user = new User();
         int amount=2000;
         user.callingDepositAgentAPI(amount);
         String messageExpected = "Deposit successful";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Deposit to Agent");
     }
 
-    @Test
-    public void _9_depositToCustomer() throws IOException, ConfigurationException {
+    @Test(priority = 9,  description = "Deposit to Customer/ Cashin")
+    public void depositToCustomer() throws IOException, ConfigurationException {
 
         User user = new User();
         int amount=1000;
         user.callingDepositCustomerAPI(amount);
         String messageExpected = "Deposit successful";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Deposit to Customer/ Cashin");
     }
 
-    @Test
-    public void _10_checkAgentBalance() throws IOException, ConfigurationException {
+    @Test(priority = 10, description = "Check Agent Balance")
+    public void checkAgentBalance() throws IOException, ConfigurationException {
 
         User user = new User();
         user.callingAgentBalanceAPI();
         String messageExpected = "User balance";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Check Agent Balance");
     }
 
-    @Test
-    public void _11_checkCustomerBalance() throws IOException, ConfigurationException {
+    @Test(priority = 11, description = "Check Customer Balance")
+    public void checkCustomerBalance() throws IOException, ConfigurationException {
 
         User user = new User();
         user.callingCustomerBalanceAPI();
         String messageExpected = "User balance";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Check Customer Balance");
     }
 
-    @Test
-    public void _12_cashOut() throws IOException, ConfigurationException {
+    @Test(priority = 12, description = "Cashout by Customer")
+    public void cashOut() throws IOException, ConfigurationException {
 
         User user = new User();
         int amount = 500;
         user.callingCashOutAPI(amount);
         String messageExpected = "Withdraw successful";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Cashout by Customer");
     }
 
-    @Test
-    public void _13_checkCustomerBalanceAgain() throws IOException, ConfigurationException {
+    @Test(priority = 13, description = "Check Balance of Customer")
+    public void checkCustomerBalanceAgain() throws IOException, ConfigurationException {
 
         User user = new User();
         user.callingCustomerBalanceAPI();
         String messageExpected = "User balance";
         Assert.assertEquals(user.getMessage(), messageExpected);
+        Allure.description("Check Balance of Customer");
     }
 
 
