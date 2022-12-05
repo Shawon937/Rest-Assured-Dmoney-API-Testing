@@ -22,17 +22,28 @@
 7. Cashout 500 tk from the customer
 8. Check the balance of customer again
 
-## How to run this project
-- clone this project
-- hit the following command into the terminal:
-  `gradle clean test`
-
 ## Prerequisite
 - JDK 8 or higher
 - java IDE
 - configure JAVA_HOME and GRADLE_HOME
 
-## Report
+## How to run this project
+- clone this project
+- hit the following command into the terminal:
+  `gradle clean test`
+
+## Command for Allure Report
+- After run the project give the following command for generate Allure Report
+
+  `allure generate allure-results --clean -o allure-report`
+  
+  `allure serve allure-results`  
+  
+## Allure Report  
+![Screenshot (10)](https://user-images.githubusercontent.com/29010350/205638378-936b0eed-c65f-4678-8c1b-17bb2d2ed442.png)
+
+  
+## Gradle Report
 ![Screenshot (80)](https://user-images.githubusercontent.com/29010350/205562180-f5e0b666-cbe7-4489-8d6b-ecab0a38de4d.png)
 
 
