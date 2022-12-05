@@ -5,7 +5,7 @@
 - rest-assured
 - commons-configuration
 - jackson-databind
-- Junit
+- TestNG
 - Java
 - Gradle
 - intellij idea 
